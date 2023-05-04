@@ -43,23 +43,45 @@ void printLinkedList (LInt k) {
     }
 }
 
+// 4.
+
+LInt reverseL (LInt l) {
+    struct lligada *current = l;
+    struct lligada *next = NULL;
+    struct lligada *previous = NULL;
+
+    while (current != NULL) {
+        next = current->prox;
+        current->prox = previous;
+        previous = current;
+        current = next;
+    }
+    
+    current = previous;
+
+    return current;
+}
+
 // 5.
+
 void insertOrd (LInt *l, int x) {
 
     struct lligada *newNode = malloc(sizeof (struct lligada));
     newNode->valor = x;
     newNode->prox = NULL;
-
-    if (l* == NULL || *l->valor >= x) {
-        newNode->next = *l;
-        *l = NewNode;
-    }
-
+    
     struct lligada *current = *l;
+
+    if (*l == NULL || (*l)->valor >= x) {
+        newNode->prox = *l;
+        *l = newNode;
+    }
+    
+    else { 
     while (current->prox != NULL && current->prox->valor < x) {
         current = current->prox;
     }
-
     newNode->prox = current->prox;
     current->prox = newNode;
+    }
 }
